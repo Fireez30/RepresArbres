@@ -35,16 +35,17 @@ public class Vue extends JPanel implements MouseListener, MouseMotionListener{
 		//initFromLog(fileName, modelCoordinates); 
 		//if(!modelCoordinates)export("trio-hypo-2.csv");
 		ArrayList<Noeud> arbre = new ArrayList<Noeud>();
-		Noeud origine = new Noeud(0,300,"Univers");
+		Noeud origine = new Noeud(300,300,"Univers");
 		Noeud a = new Noeud("Matiere");
-		Noeud b = new Noeud("Anti-matiere");
-		a.addFils(new Noeud("Hydrogene"));
-		a.addFils(new Noeud("Helium"));
-		b.addFils(new Noeud("Anti-Hydrogene"));
-		b.addFils(new Noeud("Anti-Helium"));
-		b.addFils(new Noeud("Anti-Oxygene"));
+		Noeud b = new Noeud("!Matiere");
+		a.addFils(new Noeud("H"));
+		a.addFils(new Noeud("He"));
+		b.addFils(new Noeud("!H"));
+		b.addFils(new Noeud("!He"));
+		b.addFils(new Noeud("!He2"));
 		origine.addFils(a);
 		origine.addFils(b);
+		arbre.add(origine);
 		this.setNoeuds(arbre);
 	}
 

@@ -44,16 +44,34 @@ public class Noeud {
 	}
 
 	public void updateFilsCoords() {
+		int length = 100;
 		if (!fils.isEmpty()) {
+			boolean aSwitch = true;
 			for (int i = 0; i < fils.size(); i++) {
-				fils.get(i).point.x = point.x + 50;
-				if (i == 0) 
+				if (aSwitch)
 				{
-					fils.get(i).point.y = point.y - 50;
+					fils.get(i).point.x = point.x;
+					fils.get(i).point.y = point.y + length;
 				}
 				else 
 				{
-					fils.get(i).point.y = fils.get(i-1).point.y + 100/fils.size();
+					fils.get(i).point.x = point.x;
+					fils.get(i).point.y = point.y - length;
+				}
+				
+				if (i != 0)
+					for (int j = 0; j < i; j++) {
+					if (aSwitch) {
+						fils.get(j).point.x = fils.get(j).point.x - length/fils.size();
+						fils.get(j).point.y = fils.get(j).point.y;
+						aSwitch = false;
+					}
+					else
+					{
+						fils.get(j).point.x = fils.get(j).point.x + length/fils.size();
+						fils.get(j).point.y = fils.get(j).point.y;
+						aSwitch = true;
+					}
 				}
 			}
 		}
@@ -72,6 +90,10 @@ public class Noeud {
 			for (Vecteur v: aretes) {
 				v.dessine(g2d);
 			}		
+		}
+		
+		for (Noeud n : fils) {
+			n.drawNoeud(g2d);
 		}
 	}
 }
